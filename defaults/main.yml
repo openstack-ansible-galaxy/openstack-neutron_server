@@ -20,6 +20,7 @@
 # Neutron
 neutron_dbpass: neutron_dbpass_default
 neutron_server_hostname: localhost
+neutron_pass: neutron_pass_default
 neutron_port: 9696
 neutron_protocol: http
 
