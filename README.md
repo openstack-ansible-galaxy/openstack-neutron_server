@@ -69,7 +69,7 @@ Role Variables
 Dependencies
 ------------
 
-Neutron ml2 plugin: `openstack-neutron_ml2_plugin`
+Neutron ml2 plugin role: `openstack-neutron_plugin_ml2`
 
 Example Playbook
 ----------------
@@ -77,15 +77,15 @@ Example Playbook
     - hosts: neutron_server001
       roles:
         - role: openstack-neutron_server
-            mysql_rootpass: "{{ MYSQL_ROOT }}"
-            rabbit_username: "openstack-neutron"
-            rabbit_pass: "{{ RABBIT_NEUTRON_PASS }}"
-            admin_token: "{{ ADMIN_TOKEN }}"
-            metadata_secret: "{{ METADATA_SECRET }}"
-            neutron_dbpass: "{{ NEUTRON_DBPASS }}"
-            neutron_server_hostname: "{{ ansible_eth0.ipv4.address }}"
-            neutron_pass: "{{ NEUTRON_PASS }}"
-            nova_pass: "{{ NOVA_PASS }}"
+           mysql_rootpass: "{{ MYSQL_ROOT }}"
+           rabbit_username: "openstack-neutron"
+           rabbit_pass: "{{ RABBIT_NEUTRON_PASS }}"
+           admin_token: "{{ ADMIN_TOKEN }}"
+           metadata_secret: "{{ METADATA_SECRET }}"
+           neutron_dbpass: "{{ NEUTRON_DBPASS }}"
+           neutron_server_hostname: "{{ ansible_eth0.ipv4.address}}"
+           neutron_pass: "{{ NEUTRON_PASS }}"
+           nova_pass: "{{ NOVA_PASS }}"
 
 License
 -------
