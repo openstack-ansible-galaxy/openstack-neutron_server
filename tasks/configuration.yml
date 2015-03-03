@@ -23,7 +23,7 @@
   changed_when: false
   environment: openstack_service_env
 
-- name: Configure neutron
+- name: Configure Neutron Database
   ini_file: dest=/etc/neutron/neutron.conf
             section="{{ item.section }}"
             option="{{ item.option }}"
@@ -31,7 +31,22 @@
   with_items:
     - section:  database
       option:   connection
-      value:    "mysql://neutron:{{ neutron_dbpass }}@{{ mysql_hostname }}/neutron"
+      value:    "{{ neutron_database_url }}"
+  notify:
+    - Restart Neutron server
+
+- name: Configure Neutron
+  ini_file: dest=/etc/neutron/neutron.conf
+            section="{{ item.section }}"
+            option="{{ item.option }}"
+            value="{{ item.value }}"
+  with_items:
+    - section:  database
+      option:   connection
+      value:    "{{ neutron_database_url }}"
+    - section:  DEFAULT
+      option:   bind_port
+      value:    "{{ neutron_port }}"
     - section:  DEFAULT
       option:   auth_strategy
       value:    keystone
@@ -99,4 +114,4 @@
       option:   admin_password
       value:    "{{ neutron_pass }}"
   notify:
-    - Restart neutron server
+    - Reload Neutron server

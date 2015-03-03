@@ -18,14 +18,12 @@
 #
 
 # Neutron
-neutron_dbpass: neutron_dbpass_default
 neutron_server_hostname: localhost
 neutron_pass: neutron_pass_default
 neutron_port: 9696
 neutron_protocol: http
 
 # Keystone
-admin_token: admin_token_default
 keystone_admin_port: 35357
 keystone_hostname: localhost
 keystone_port: 5000
@@ -37,10 +35,8 @@ nova_pass: nova_pass_default
 nova_port: 8774
 nova_protocol: http
 
-# MySQL
-mysql_admin_username: root
-mysql_hostname: localhost
-mysql_rootpass: mysql_root_default
+# Database
+neutron_database_url: "sqlite:////var/lib/neutron/neutron.sqlite"
 
 # RabbitMQ
 rabbit_hostname: localhost

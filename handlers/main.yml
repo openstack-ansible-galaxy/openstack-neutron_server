@@ -17,5 +17,11 @@
 # limitations under the License.
 #
 
-- name: Restart neutron server
+- name: Reload Neutron server
+  service: name=neutron-server state=reloaded
+
+- name: Restart Neutron server
   service: name=neutron-server state=restarted
+
+- name: Start Neutron server
+  service: name=neutron-server state=started
