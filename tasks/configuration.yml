@@ -22,6 +22,7 @@
   register: service_tenant_id
   changed_when: false
   environment: openstack_service_env
+  when: not nova_admin_tenant_id
 
 - name: Configure Neutron Database
   ini_file: dest=/etc/neutron/neutron.conf
@@ -109,7 +110,7 @@
       value:    service
     - section:  keystone_authtoken
       option:   admin_user
-      value:    neutron
+      value:    "{{ neutron_user }}"
     - section:  keystone_authtoken
       option:   admin_password
       value:    "{{ neutron_pass }}"

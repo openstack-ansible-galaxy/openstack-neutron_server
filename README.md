@@ -23,10 +23,13 @@ Role Variables
 | `neutron_server_hostname` | `localhost` | Hostname/IP address where this role runs, it will be used to set keystone endpoints  ||
 | `neutron_port` | `9696` | Desired neutron-server port ||
 | `neutron_protocol` | `http` | Desired neutron protocol (http/https) | WiP, do not use |
+| `neutron_user` | `neutron` | Neutron user as defined on Keystone ||
+| `neutron_pass` | `neutron_pass_default` | Neutron password as defined on Keystone ||
 | `nova_api_hostname` | `localhost` | Hostname/IP address where the nova-api service runs ||
 | `nova_pass` | `nova_pass_default` | Nova service password ||
 | `nova_port` | `8774` | Nova-api service port ||
 | `nova_protocol` | `http` | Desired glance protocol (http/https) ||
+| `nova_admin_tenant_id` | false | Desired service tenant id | if false, tenant id of `service` tentant will be used. Note that to retrieve that `neutron_user` must be admin in `service` tenant |
 | `keystone_admin_token` | `admin_token_default` | Keystone admin service token ||
 | `keystone_admin_port` | `35357` | Keystone admin service port ||
 | `keystone_hostname` | `localhost` | Hostname/IP address where the keystone service runs ||

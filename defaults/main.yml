@@ -19,6 +19,7 @@
 
 # Neutron
 neutron_server_hostname: localhost
+neutron_user: neutron
 neutron_pass: neutron_pass_default
 neutron_port: 9696
 neutron_protocol: http
@@ -34,6 +35,7 @@ nova_api_hostname: localhost
 nova_pass: nova_pass_default
 nova_port: 8774
 nova_protocol: http
+nova_admin_tenant_id: false
 
 # Database
 neutron_database_url: "sqlite:////var/lib/neutron/neutron.sqlite"
