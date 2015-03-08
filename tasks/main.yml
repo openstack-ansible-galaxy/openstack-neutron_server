@@ -27,4 +27,4 @@
 - name: Make sure Neutron server is started
   service: name=neutron-server state=started
 - name: Wait neutron
-  wait_for: host="{{ neutron_server_hostname }}" port="{{ neutron_port }}" delay=3
+  wait_for: host="{{ neutron_server_hostname }}" port="{{ neutron_port }}"
