@@ -73,11 +73,11 @@
       option:   nova_url
       value:    "{{ nova_protocol }}://{{ nova_api_hostname }}:{{ nova_port }}/v2"
     - section:  DEFAULT
-      option:   nova_admin_username
-      value:    nova
-    - section:  DEFAULT
       option:   nova_admin_tenant_id
       value:    "{{ service_tenant_id.stdout }}"
+    - section:  DEFAULT
+      option:   nova_admin_username
+      value:    "{{ nova_user }}"
     - section:  DEFAULT
       option:   nova_admin_password
       value:    "{{ nova_pass }}"
