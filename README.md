@@ -1,5 +1,10 @@
-Neutron server
+Neutron server OpenStack Ansible Role
 =========
+
+**Status**
+* [![Build Status](https://travis-ci.org/dguerri/openstack-neutron_server.svg?branch=master)](https://travis-ci.org/dguerri/openstack-neutron_server) on master branch
+* [![Build Status](https://travis-ci.org/dguerri/openstack-neutron_server.svg?branch=development)](https://travis-ci.org/dguerri/openstack-neutron_server) on development branch
+* [![Ansible Galaxy](http://img.shields.io/badge/dguerri-openstack--neutron_server-blue.svg)](https://galaxy.ansible.com/list#/roles/1780) on Ansible Galaxy
 
 OpenStack Neutron server installation
 
