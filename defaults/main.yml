@@ -23,6 +23,7 @@ neutron_user: neutron
 neutron_pass: neutron_pass_default
 neutron_port: 9696
 neutron_protocol: http
+neutron_log_dir: /var/log/neutron
 
 # Keystone
 keystone_admin_port: 35357

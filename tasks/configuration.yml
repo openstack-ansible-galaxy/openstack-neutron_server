@@ -93,6 +93,9 @@
     - section:  DEFAULT
       option:   allow_overlapping_ips
       value:    True
+    - section:  DEFAULT
+      option:   log_dir
+      value:    "{{ neutron_log_dir }}"
     - section:  keystone_authtoken
       option:   auth_uri
       value:    "{{ keystone_protocol }}://{{ keystone_hostname }}:{{ keystone_port }}"
