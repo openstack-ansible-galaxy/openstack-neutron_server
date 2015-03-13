@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-- name: Install neutron server and client
+- name: Install Neutron server and client
   apt: name="{{ item }}" state=present
   with_items:
     - neutron-server

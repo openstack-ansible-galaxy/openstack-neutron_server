@@ -1,5 +1,10 @@
-Neutron server
+Neutron server OpenStack Ansible Role
 =========
+
+**Status**
+* [![Build Status](https://travis-ci.org/dguerri/openstack-neutron_server.svg?branch=master)](https://travis-ci.org/dguerri/openstack-neutron_server) on master branch
+* [![Build Status](https://travis-ci.org/dguerri/openstack-neutron_server.svg?branch=development)](https://travis-ci.org/dguerri/openstack-neutron_server) on development branch
+* [![Ansible Galaxy](http://img.shields.io/badge/dguerri-openstack--neutron_server-blue.svg)](https://galaxy.ansible.com/list#/roles/1780) on Ansible Galaxy
 
 OpenStack Neutron server installation
 
@@ -12,64 +17,39 @@ A RabbitMQ server. See below.
 
 A Keystone server. See below.
 
-A Nova api server. See below.
+A Nova API server. See below.
 
 Role Variables
 --------------
-
-### Neutron (set by this role)
 
 | Name | Default value | Description | Note |
 |---  |---  |---  |--- |
 | `neutron_dbpass` | `neutron_dbpass_default` | neutron user db password ||
 | `neutron_server_hostname` | `localhost` | Hostname/IP address where this role runs, it will be used to set keystone endpoints  ||
 | `neutron_port` | `9696` | Desired neutron-server port ||
-| `neutron_protocol` | `http` | Desired neutron protocol (http/https) | WiP, do not use. |
-
-
-### Nova (must exist)
-
-| Name | Default value | Description | Note |
-|---  |---  |---  |--- |
-| `nova_api_hostname` | `localhost` | Hostname/IP address where the nova-api service runs ||
-| `nova_pass` | `nova_pass_default` | Nova service password ||
-| `nova_port` | `8774` | Nova-api service port ||
+| `neutron_protocol` | `http` | Desired neutron protocol (http/https) | WiP, do not use |
+| `neutron_user` | `neutron` | Neutron user as defined on Keystone ||
+| `neutron_pass` | `neutron_pass_default` | Neutron password as defined on Keystone ||
+| `nova_api_hostname` | `localhost` | Hostname/IP address where the Nova API service runs ||
+| `nova_user` | `nova` | Nova API service username ||
+| `nova_pass` | `nova_pass_default` | Nova API service password ||
+| `nova_port` | `8774` | Nova API service port ||
 | `nova_protocol` | `http` | Desired glance protocol (http/https) ||
-
-
-### Keystone (must exist)
-
-| Name | Default value | Description | Note |
-|---  |---  |---  |--- |
-| `admin_token` | `admin_token_default` | Keystone admin service token ||
+| `nova_admin_tenant_id` | false | Desired service tenant id | if false, tenant id of `service` tentant will be used. Note that to retrieve that `neutron_user` must be admin in `service` tenant |
+| `keystone_admin_token` | `admin_token_default` | Keystone admin service token ||
 | `keystone_admin_port` | `35357` | Keystone admin service port ||
 | `keystone_hostname` | `localhost` | Hostname/IP address where the keystone service runs ||
 | `keystone_port` | `5000` | Keystone service port ||
 | `keystone_protocol` | `http` | Desired keystone protocol (http/https) ||
-
-
-### MySQL (must exist)
-
-| Name | Default value | Description | Note |
-|---  |---  |---  |--- |
-| `mysql_admin_username` | `root` | MySQL admin username ||
-| `mysql_hostname` | `localhost` | MySQL server address ||
-| `mysql_rootpass` | `mysql_root_default` | MySQL admin password ||
-
-
-### RabbitMQ (must exist)
-
-| Name | Default value | Description | Note |
-|---  |---  |---  |--- |
 | `rabbit_hostname` | `localhost` | Hostname/IP address where the RabbitMQ service runs ||
-| `rabbit_username` | `rabbit_username_default` | RabbitMQ username for glance ||
-| `rabbit_pass` | `rabbit_pass_default` | RabbitMQ password for glance. ||
+| `rabbit_username` | `rabbit_username_default` | RabbitMQ username for neutron ||
+| `rabbit_pass` | `rabbit_pass_default` | RabbitMQ password for neutron ||
 
 
 Dependencies
 ------------
 
-Neutron ml2 plugin role: `openstack-neutron_plugin_ml2`
+None
 
 Example Playbook
 ----------------
