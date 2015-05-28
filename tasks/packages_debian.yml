@@ -17,17 +17,8 @@
 # limitations under the License.
 #
 
-- meta: flush_handlers
-
-- include: packages.yml
-- include: configuration.yml
-
-- meta: flush_handlers
-
-- name: Make sure Neutron server is started
-  service: name=neutron-server state=started
-
-- name: Wait neutron
-  wait_for: host="{{ neutron_server_hostname }}" port="{{ neutron_port }}"
-# Don't wait in RH, it starts without the ml2 plugin
-# when: ansible_os_family != 'RedHat'
+- name: Install Neutron server and client
+  apt: name="{{ item }}" state=present
+  with_items:
+    - neutron-server
+    - python-neutronclient
