@@ -19,6 +19,8 @@ A Keystone server. See below.
 
 A Nova API server. See below.
 
+For RHEL/CentOS, RHOSP or RDO repositories are needed.
+
 Role Variables
 --------------
 
@@ -72,6 +74,10 @@ Example Playbook
 A complete Ansible playbook demo, which uses this role, is available on Github (dguerri/vagrant-ansible-openstack) <https://github.com/dguerri/vagrant-ansible-openstack>
 
 ---
+
+Credits
+-------
+RedHat suport implemented by Abel Boldú <abel.boldu@gmx.com>
 
 
 License
