@@ -18,11 +18,10 @@
 #
 
 - name: Dump service tenant id
-  shell: keystone tenant-get service | awk '/ id / {print $4}'
+  shell: "keystone tenant-get {{ nova_admin_tenant_name }} | awk '/ id / {print $4}'"
   register: service_tenant_id
   changed_when: false
   environment: openstack_service_env
-  when: not nova_admin_tenant_id
 
 - name: Configure Neutron Database
   ini_file: dest=/etc/neutron/neutron.conf
@@ -34,6 +33,7 @@
       option:   connection
       value:    "{{ neutron_database_url }}"
   notify:
+    - Sync Neutron db
     - Restart Neutron server
 
 - name: Configure Neutron
@@ -70,8 +70,22 @@
       option:   notify_nova_on_port_data_changes
       value:    True
     - section:  DEFAULT
+      option:   core_plugin
+      value:    ml2
+    - section:  DEFAULT
+      option:   service_plugins
+      value:    router
+    - section:  DEFAULT
+      option:   allow_overlapping_ips
+      value:    True
+    - section:  DEFAULT
+      option:   log_dir
+      value:    "{{ neutron_log_dir }}"
+    # Nova Common
+    - section:  DEFAULT
       option:   nova_url
       value:    "{{ nova_protocol }}://{{ nova_api_hostname }}:{{ nova_port }}/v2"
+    # Nova Juno
     - section:  DEFAULT
       option:   nova_admin_tenant_id
       value:    "{{ service_tenant_id.stdout }}"
@@ -84,30 +98,38 @@
     - section:  DEFAULT
       option:   nova_admin_auth_url
       value:    "{{ keystone_protocol }}://{{ keystone_hostname }}:{{ keystone_admin_port }}/v2.0"
-    - section:  DEFAULT
-      option:   core_plugin
-      value:    ml2
-    - section:  DEFAULT
-      option:   service_plugins
-      value:    router
-    - section:  DEFAULT
-      option:   allow_overlapping_ips
-      value:    True
-    - section:  DEFAULT
-      option:   log_dir
-      value:    "{{ neutron_log_dir }}"
-    - section:  keystone_authtoken
-      option:   auth_uri
-      value:    "{{ keystone_protocol }}://{{ keystone_hostname }}:{{ keystone_port }}"
+    # Nova Kilo
+    - section:  nova
+      option:   auth_plugin
+      value:    password
+    - section:  nova
+      option:   username
+      value:    "{{ nova_user }}"
+    - section:  nova
+      option:   password
+      value:    "{{ nova_pass }}"
+    - section:  nova
+      option:   project_name
+      value:    "{{ nova_admin_tenant_name }}"
+    - section:  nova
+      option:   auth_url
+      value:    "{{ keystone_protocol }}://{{ keystone_hostname }}:{{ keystone_admin_port }}"
+    # Keystone
     - section:  keystone_authtoken
       option:   auth_host
       value:    "{{ keystone_hostname }}"
     - section:  keystone_authtoken
+      option:   auth_protocol
+      value:    "{{ keystone_protocol }}"
+    - section:  keystone_authtoken
       option:   auth_port
       value:    "{{ keystone_admin_port }}"
     - section:  keystone_authtoken
-      option:   auth_protocol
-      value:    "{{ keystone_protocol }}"
+      option:   identity_uri
+      value:    "{{ keystone_protocol }}://{{ keystone_hostname }}:{{ keystone_admin_port }}"
+    - section:  keystone_authtoken
+      option:   auth_uri
+      value:    "{{ keystone_protocol }}://{{ keystone_hostname }}:{{ keystone_port }}"
     - section:  keystone_authtoken
       option:   admin_tenant_name
       value:    service
