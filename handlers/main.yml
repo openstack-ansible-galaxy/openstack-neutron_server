@@ -17,6 +17,14 @@
 # limitations under the License.
 #
 
+- name: Sync Neutron db
+  shell: >
+    neutron-db-manage --config-file /etc/neutron/neutron.conf upgrade head
+  sudo: yes
+  sudo_user: neutron
+  notify:
+    - Restart Neutron server
+
 - name: Reload Neutron server
   service: name=neutron-server state=reloaded
 
@@ -25,11 +33,3 @@
 
 - name: Start Neutron server
   service: name=neutron-server state=started
-
-- name: Sync Neutron db
-  shell: >
-    neutron-db-manage --config-file /etc/neutron/neutron.conf upgrade head
-  sudo: yes
-  sudo_user: neutron
-  notify:
-    - Restart Neutron server
