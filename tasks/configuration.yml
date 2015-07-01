@@ -43,8 +43,9 @@
       option:   connection
       value:    "{{ neutron_database_url }}"
   notify:
-    - Restart Neutron server
     - Sync Neutron db
+    - Restart Neutron server
+
 
 - name: Configure Neutron
   ini_file: dest=/etc/neutron/neutron.conf
