@@ -24,6 +24,15 @@
   environment: openstack_service_env
   when: not nova_admin_tenant_id
 
+- name: Check neutron plugin.ini file
+  stat: path=/etc/neutron/plugin.ini
+  register: plugin_ini
+  when: ansible_os_family == 'RedHat'
+
+- name: Link default ml2 plugin
+  file: src=/etc/neutron/plugins/ml2/ml2_conf.ini dest=/etc/neutron/plugin.ini state=link
+  when: ansible_os_family == 'RedHat' and plugin_ini.stat.exists == False
+
 - name: Configure Neutron Database
   ini_file: dest=/etc/neutron/neutron.conf
             section="{{ item.section }}"
@@ -35,6 +44,7 @@
       value:    "{{ neutron_database_url }}"
   notify:
     - Restart Neutron server
+    - Sync Neutron db
 
 - name: Configure Neutron
   ini_file: dest=/etc/neutron/neutron.conf
