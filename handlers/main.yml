@@ -17,9 +17,6 @@
 # limitations under the License.
 #
 
-- name: Reload Neutron server
-  service: name=neutron-server state=reloaded
-
 - name: Restart Neutron server
   service: name=neutron-server state=restarted
 

@@ -46,23 +46,42 @@
       option:   connection
       value:    "{{ neutron_database_url }}"
     - section:  DEFAULT
+      option:   bind_host
+      value:    "{{ neutron_bind_host }}"
+    - section:  DEFAULT
       option:   bind_port
       value:    "{{ neutron_port }}"
     - section:  DEFAULT
       option:   auth_strategy
       value:    keystone
     - section:  DEFAULT
+      option:   api_paste_config
+      value:    "{{ neutron_api_paste }}"
+    # RabbitMQ
+    - section:  DEFAULT
       option:   rpc_backend
       value:    neutron.openstack.common.rpc.impl_kombu
     - section:  DEFAULT
       option:   rabbit_host
-      value:    "{{ rabbit_hostname }}"
+      value:    "{{ neutron_rabbit_hostname }}"
     - section:  DEFAULT
       option:   rabbit_userid
-      value:    "{{ rabbit_username }}"
+      value:    "{{ neutron_rabbit_username }}"
     - section:  DEFAULT
       option:   rabbit_password
-      value:    "{{ rabbit_pass }}"
+      value:    "{{ neutron_rabbit_pass }}"
+    - section:  DEFAULT
+      option:   rabbit_virtual_host
+      value:    "{{ neutron_rabbit_virtual_host }}"
+    - section:  DEFAULT
+      option:   rabbit_retry_interval
+      value:    "{{ neutron_rabbit_retry_interval }}"
+    - section:  DEFAULT
+      option:   rabbit_hosts
+      value:    "{{ neutron_rabbit_hosts }}"
+    - section:  DEFAULT
+      option:   rabbit_ha_queues
+      value:    "{{ neutron_rabbit_ha_queues }}"
     - section:  DEFAULT
       option:   notify_nova_on_port_status_changes
       value:    True
@@ -96,6 +115,12 @@
     - section:  DEFAULT
       option:   log_dir
       value:    "{{ neutron_log_dir }}"
+    - section:  DEFAULT
+      option:   log_debug
+      value:    "{{ neutron_log_debug }}"
+    - section:  DEFAULT
+      option:   log_verbose
+      value:    "{{ neutron_log_verbose }}"
     - section:  keystone_authtoken
       option:   auth_uri
       value:    "{{ keystone_protocol }}://{{ keystone_hostname }}:{{ keystone_port }}"
@@ -118,4 +143,4 @@
       option:   admin_password
       value:    "{{ neutron_pass }}"
   notify:
-    - Reload Neutron server
+    - Restart Neutron server

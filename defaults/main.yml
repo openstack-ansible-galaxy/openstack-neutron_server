@@ -21,9 +21,13 @@
 neutron_server_hostname: localhost
 neutron_user: neutron
 neutron_pass: neutron_pass_default
+neutron_bind_host: 0.0.0.0
 neutron_port: 9696
 neutron_protocol: http
 neutron_log_dir: /var/log/neutron
+neutron_log_debug: False
+neutron_log_verbose: False
+neutron_api_paste: /usr/share/neutron/api-paste.ini
 
 # Keystone
 keystone_admin_port: 35357
@@ -43,6 +47,12 @@ nova_admin_tenant_id: false
 neutron_database_url: "sqlite:////var/lib/neutron/neutron.sqlite"
 
 # RabbitMQ
-rabbit_hostname: localhost
-rabbit_username: rabbit_username_default
-rabbit_pass: rabbit_pass_default
+neutron_rabbit_hostname: localhost
+neutron_rabbit_username: rabbit_username_default
+neutron_rabbit_pass: rabbit_pass_default
+neutron_rabbit_virtual_host: /
+neutron_rabbit_retry_interval: 1
+neutron_rabbit_port: 5672
+neutron_rabbit_hosts: "{{ neutron_rabbit_hostname }}:{{ neutron_rabbit_port }}"
+neutron_rabbit_ha_queues: False
+
