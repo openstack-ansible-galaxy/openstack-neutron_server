@@ -27,7 +27,7 @@ neutron_protocol: http
 neutron_log_dir: /var/log/neutron
 neutron_log_debug: False
 neutron_log_verbose: False
-neutron_api_paste: /usr/share/neutron/api-paste.ini
+neutron_api_paste: /etc/neutron/api-paste.ini
 
 # Keystone
 keystone_admin_port: 35357
