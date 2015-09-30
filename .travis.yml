@@ -21,10 +21,10 @@ install:
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
   # Install required ansible roles
-  - ansible-galaxy install dguerri.openstack-keystone,2.0.1
-  - ansible-galaxy install dguerri.openstack-nova_conductor,2.0.0
-  - ansible-galaxy install dguerri.openstack-glance,2.0.1
-  - ansible-galaxy install dguerri.openstack-nova_api,2.0.0
+  - git clone --depth=1 https://github.com/openstack-ansible-galaxy/openstack-keystone.git ../openstack-keystone
+  - git clone --depth=1 https://github.com/openstack-ansible-galaxy/openstack-nova_conductor.git ../openstack-nova_conductor
+  - git clone --depth=1 https://github.com/openstack-ansible-galaxy/openstack-glance.git ../openstack-glance
+  - git clone --depth=1 https://github.com/openstack-ansible-galaxy/openstack-nova_api.git ../openstack-nova_api
 
 
 script:

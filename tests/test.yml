@@ -3,7 +3,7 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - role: dguerri.openstack-keystone
+    - role: openstack-keystone
       keystone_admin_bind_host: 127.0.0.1
       keystone_bind_host: 127.0.0.1
       keystone_admin_token: "os token"
@@ -46,29 +46,29 @@
           internal_url: "http://127.0.0.1:9696/"
           admin_url: "http://127.0.0.1:9696/"
 
-    - role: dguerri.openstack-glance
+    - role: openstack-glance
       glance_hostname: 127.0.0.1
       glance_pass: "glance password"
       keystone_hostname: 127.0.0.1
-      rabbit_hostname: 127.0.0.1
-      rabbit_username: guest
-      rabbit_pass: "guest"
+      glance_rabbit_hostname: 127.0.0.1
+      glance_rabbit_username: guest
+      glance_rabbit_pass: "guest"
 
-    - role: dguerri.openstack-nova_conductor
+    - role: openstack-nova_conductor
       my_ip: "127.0.0.1"
       keystone_hostname: "127.0.0.1"
-      rabbit_hostname: "127.0.0.1"
-      rabbit_username: "guest"
-      rabbit_pass: "guest"
+      nova_conductor_rabbit_hostname: "127.0.0.1"
+      nova_conductor_rabbit_username: "guest"
+      nova_conductor_rabbit_pass: "guest"
 
-    - role: dguerri.openstack-nova_api
+    - role: openstack-nova_api
       my_ip: "127.0.0.1"
       keystone_hostname: "127.0.0.1"
-      rabbit_hostname: "127.0.0.1"
-      rabbit_username: "guest"
-      rabbit_pass: "guest"
+      nova_api_rabbit_hostname: "127.0.0.1"
+      nova_api_rabbit_username: "guest"
+      nova_api_rabbit_pass: "guest"
       metadata_secret: "metadata_secret"
-      nova_pass: "nova password"
+      nova_api_pass: "nova password"
       glance_hostname: "127.0.0.1"
       neutron_host: "127.0.0.1"
       neutron_pass: "neutron password"
@@ -80,9 +80,9 @@
       neutron_pass: "neutron password"
       neutron_port: "9696"
       keystone_hostname: 127.0.0.1
-      rabbit_hostname: 127.0.0.1
-      rabbit_username: "guest"
-      rabbit_pass: "guest"
+      neutron_rabbit_hostname: 127.0.0.1
+      neutron_rabbit_username: "guest"
+      neutron__rabbit_pass: "guest"
       nova_protocol: "http"
       nova_api_hostname: 127.0.0.1
       nova_port: "8774"
