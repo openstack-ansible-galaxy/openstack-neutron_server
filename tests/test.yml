@@ -82,7 +82,7 @@
       keystone_hostname: 127.0.0.1
       neutron_rabbit_hostname: 127.0.0.1
       neutron_rabbit_username: "guest"
-      neutron__rabbit_pass: "guest"
+      neutron_rabbit_pass: "guest"
       nova_protocol: "http"
       nova_api_hostname: 127.0.0.1
       nova_port: "8774"
