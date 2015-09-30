@@ -18,7 +18,7 @@
 #
 
 - name: Restart Neutron server
-  service: name=neutron-server state=restarted
+  service: name=neutron-server state=restarted enabled=yes
 
 - name: Start Neutron server
-  service: name=neutron-server state=started
+  service: name=neutron-server state=started enabled=yes
