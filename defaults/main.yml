@@ -37,10 +37,10 @@ keystone_protocol: http
 
 # Nova
 nova_api_hostname: localhost
-nova_user: nova
-nova_pass: nova_pass_default
-nova_port: 8774
-nova_protocol: http
+nova_api_user: nova
+nova_api_pass: nova_pass_default
+nova_api_port: 8774
+nova_api_protocol: http
 nova_admin_tenant_id: false
 
 # Database
