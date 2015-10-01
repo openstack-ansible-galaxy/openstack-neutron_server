@@ -51,8 +51,8 @@
       glance_pass: "glance password"
       keystone_hostname: 127.0.0.1
       glance_rabbit_hostname: 127.0.0.1
-      glance_rabbit_username: guest
-      glance_rabbit_pass: "guest"
+      glance_rabbit_userid: guest
+      glance_rabbit_password: "guest"
 
     - role: openstack-nova_conductor
       my_ip: "127.0.0.1"

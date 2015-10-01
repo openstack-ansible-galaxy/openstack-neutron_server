@@ -44,8 +44,8 @@ Role Variables
 | `keystone_port` | `5000` | Keystone service port ||
 | `keystone_protocol` | `http` | Desired keystone protocol (http/https) ||
 | `neutron_rabbit_hostname` | `localhost` | Hostname/IP address where the RabbitMQ service runs ||
-| `neutron_rabbit_username` | `rabbit_username_default` | RabbitMQ username for neutron ||
-| `neutron_rabbit_pass` | `rabbit_pass_default` | RabbitMQ password for neutron ||
+| `neutron_rabbit_userid` | `rabbit_username_default` | RabbitMQ username for neutron ||
+| `neutron_rabbit_password` | `rabbit_pass_default` | RabbitMQ password for neutron ||
 | `neutron_rabbit_virtual_host` | `/` | RabbitMQ virtual host ||
 | `neutron_rabbit_retry_interval` | `1` | Frequency to retry connecting to RabbitMQ ||
 | `neutron_rabbit_hosts` | `$rabbit_host:$rabbit_port` | RabbitMQ HA Cluster host:port pairs ||
