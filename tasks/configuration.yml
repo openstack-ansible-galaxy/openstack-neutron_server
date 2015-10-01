@@ -66,10 +66,10 @@
       value:    "{{ neutron_rabbit_hostname }}"
     - section:  DEFAULT
       option:   rabbit_userid
-      value:    "{{ neutron_rabbit_username }}"
+      value:    "{{ neutron_rabbit_userid }}"
     - section:  DEFAULT
       option:   rabbit_password
-      value:    "{{ neutron_rabbit_pass }}"
+      value:    "{{ neutron_rabbit_password }}"
     - section:  DEFAULT
       option:   rabbit_virtual_host
       value:    "{{ neutron_rabbit_virtual_host }}"
