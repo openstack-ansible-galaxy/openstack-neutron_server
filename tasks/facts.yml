@@ -1,0 +1,9 @@
+---
+
+- name: Set service Facts
+  set_fact: neutron_api_paste='/etc/neutron/api-paste.ini'
+  when: ansible_os_family == 'Debian'
+
+- name: Set service Facts
+  set_fact: neutron_api_paste='/usr/share/neutron/api-paste.ini'
+  when: ansible_os_family == 'RedHat'
